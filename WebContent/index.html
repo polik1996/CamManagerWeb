@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+	<title>CamManagerWeb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <meta http-equiv="Expires" content="0" />
+	<link rel="stylesheet" href="css/styles.css" type="text/css">
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<img alt="CamManagerWeb" src="images/logo.png">
+		</div>
+        <div id="divPlugin" class="plugin"></div>
+        <div id="content_container">
+            <div id="navigation">
+                <button class="menu" value="1" type="submit" style="width: 125px; height: 40px;">Settings</button>
+                <button class="menu" value="2" type="submit" style="width: 125px; height: 40px;">Connect</button>
+                <button class="menu" value="3" type="submit" style="width: 125px; height: 40px;">Information</button>
+            </div>
+            <div id="content">
+            </div>
+        </div>
+        <div id="informationContainer">
+            <fieldset class="operate">
+		      <legend>Operation information</legend>
+		      <div id="opinfo" class="opinfo"></div>
+	       </fieldset>
+            <fieldset class="callback">
+		      <legend>Event callback information</legend>
+		      <div id="cbinfo" class="cbinfo"></div>
+	       </fieldset>
+        </div>
+	</div>
+</body>
+<script src="jquery-1.7.1.min.js"></script>
+<script src="webVideoCtrl.js"></script>
+<script src="script.js"></script>
+</html>
