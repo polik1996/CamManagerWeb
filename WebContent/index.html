@@ -22,67 +22,75 @@
                 <li><a title="tab4" href="#">Playback</a></li>
             </ul>
         </div>
-            <div id="content">
-                <div id="tab1">
-                    <table cellpadding="0" cellspacing="3" border="0">
-                        <tr>
-                            <td class="tt">IP address</td>
-                            <td><input id="loginip" type="text" class="txt" value="172.9.4.222" /></td>
-                        </tr>
-                        <tr>
-                            <td class="tt">User name</td>
-                            <td><input id="username" type="text" class="txt" value="admin" /></td>
-                        </tr>
-                        <tr>
-                            <td class="tt">Password</td>
-                            <td><input id="password" type="password" class="txt" value="12345" /></td>
-                        </tr>
-                        <tr>
-                            <td class="tt">Port</td>
-                            <td><input id="port" type="text" class="txt" value="80" /></td>
-                        </tr>
-                        <tr>
-                            <td class="tt">Device port</td>
-                            <td colspan="2"><input id="deviceport" type="text" class="txt" value="8000" /></td>
-                        </tr>
-                        <tr>
-                            <td class="tt">Channel list</td>
-                            <td>
-                                <select id="channels" class="sel"></select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tt">Channel list</td>
-                            <td>
-                                <select id="channels" class="sel"></select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                                <input type="button" class="btn" value="Login" onclick="clickLogin();" />
-                                <input type="button" class="btn" value="Logout" onclick="clickLogout();" />
-                            </td>
-                             <td>
-                                Split screen&nbsp;
-                                <select class="sel2" onchange="changeWndNum(this.value);">
-                                    <option value="1">1x1</option>
-                                    <option value="2" selected>2x2</option>
-                                    <option value="3">3x3</option>
-                                    <option value="4">4x4</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div id="tab2">
-                    Второй контент
-                </div>
-                <div id="tab3">
-                    Третий контент
-                </div>
-                <div id="tab4">
-                    Четвёртый контент
-                </div>
+        <div id="content">
+            <div id="tab1">
+                <table>
+                    <tr>
+                        <td><label for="loginip">IP address:</label></td>
+                        <td><input id="loginip" name="loginip" type="text" value="172.9.4.222" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="username">User name:</label></td>
+                        <td><input id="username" name="username" type="text" value="admin" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password:</label></td>
+                        <td><input id="password" type="password" name="password" value="12345" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="port">Port:</label></td>
+                        <td><input id="port" type="text" name="port" value="80" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="deviceport">Device port:</label></td>
+                        <td><input id="deviceport" type="text" name="deviceport" value="8000" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="channels">Channel list:</label></td>
+                        <td>
+                            <select id="channels" name="channels" class="sel"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="ip">Logined devices:</label></td>
+                        <td>
+                            <select id="ip" name="ip" class="sel" onchange="getChannelInfo();"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td width="186px" align="center">
+                            <a>Split screen</a>
+                            <select class="sel2" onchange="changeWndNum(this.value);">
+                                <option value="1">1x1</option>
+                                <option value="2" selected>2x2</option>
+                                <option value="3">3x3</option>
+                                <option value="4">4x4</option>
+                            </select>
+                        </td>
+                        <td width="186px" align="center">
+                            <a>Connection mode</a>
+                            <select class="sel2">
+                                <option value="1" selected>SDK</option>
+                                <option value="2">RTSP</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="60" width="186px" align="center"><input type="button" class="btn" value="Login" onclick="clickLogin();"/></td>
+                        <td width="186px" align="center"><input type="button" class="btn" value="Logout" onclick="clickLogout();" /></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div id="tab2">
+                Второй контент
+            </div>
+            <div id="tab3">
+                Третий контент
+            </div>
+            <div id="tab4">
+                Четвёртый контент
+            </div>
         </div>
         <div id="informationContainer">
             <fieldset class="operate">
