@@ -79,17 +79,150 @@
                         <td height="60" width="186px" align="center"><input type="button" class="btn" value="Login" onclick="clickLogin();"/></td>
                         <td width="186px" align="center"><input type="button" class="btn" value="Logout" onclick="clickLogout();" /></td>
                     </tr>
-
                 </table>
             </div>
             <div id="tab2">
-                Второй контент
+                <table>
+                    <tr>
+                        <td align="center" width="124px"><label for="streamtype" class="browse">Stream type:</label></td>
+                        <td align="center" width="124px">
+                            <select id="streamtype" class="sel3">
+                                <option value="1" selected>Main stream</option>
+                                <option value="2">Sub stream</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td align="center" width="124px"><label for="volume" class="browse">Volume:</label></td>
+                        <td align="center" width="124px"><input id="volume" name="volume" type="text" value="50" maxlength="3" class="browseinput"/></td>
+                        <td align="center"><input type="button" class="btn2" value="Set" onclick="clickSetVolume();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><label for="audiochannels" class="browse">Voice channel:</label></td>
+                        <td align="center" width="124px"><select id="audiochannels" name="audiochannels" class="sel3"></select></td>
+                        <td align="center"><input type="button" class="btn2" value="Get channel" onclick="clickGetAudioInfo();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Start preview" onclick="clickStartRealPlay();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Stop preview" onclick="clickStopRealPlay();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Full screen" onclick="clickFullScreen();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Audio On" onclick="clickOpenSound();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Audio Off" onclick="clickCloseSound();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Capture" onclick="clickCapturePic();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Voice Talk" onclick="clickStartVoiceTalk();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Stop Voice Talk" onclick="clickStopVoiceTalk();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Enable E zoom" onclick="clickEnableEZoom();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Enable 3D zoom" onclick="clickEnable3DZoom();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Disable 3D zoom" onclick="clickDisable3DZoom();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Disable E zoom" onclick="clickDisableEZoom();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Start recording" onclick="clickStartRecord();"/></td>
+                        <td align="center" width="124px" height="40px"><input type="button" class="btn2" value="Stop recording" onclick="clickStopRecord();"/></td>
+                    </tr>
+                </table>
             </div>
             <div id="tab3">
-                Третий контент
+                <table>
+                    <tr>
+                        <td align="center" width="124px"><label for="ptzspeed" class="browse">Spead:</label></td>
+                        <td align="center" width="124px">
+                            <select id="ptzspeed" name="ptzspeed" class="sel3">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option selected>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                            </select>
+                        </td>
+                        <td align="center"><input type="button" class="btn2" value="Set" onclick="clickSetPreset();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><label for="preset" class="browse">Preset:</label></td>
+                        <td align="center" width="124px"><input id="preset" name="preset" type="text" class="browseinput"/></td>
+                        <td align="center"><input type="button" class="btn2" value="Call" onclick="clickGoPreset();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Up-left" onmousedown="mouseDownPTZControl(5);" onmouseup="mouseUpPTZControl();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Up" onmousedown="mouseDownPTZControl(1);" onmouseup="mouseUpPTZControl();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Up-right" onmousedown="mouseDownPTZControl(7);" onmouseup="mouseUpPTZControl();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Left" onmousedown="mouseDownPTZControl(3);" onmouseup="mouseUpPTZControl();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Auto" onclick="mouseDownPTZControl(9);"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Right" onmousedown="mouseDownPTZControl(4);" onmouseup="mouseUpPTZControl();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Down-left" onmousedown="mouseDownPTZControl(6);" onmouseup="mouseUpPTZControl();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Down" onmousedown="mouseDownPTZControl(2);" onmouseup="mouseUpPTZControl();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Down-right" onmousedown="mouseDownPTZControl(8);" onmouseup="mouseUpPTZControl();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Zoom+" onmousedown="PTZZoomIn()" onmouseup="PTZZoomStop()"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Focus+" onmousedown="PTZFocusIn()" onmouseup="PTZFoucusStop()"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Iris+" onmousedown="PTZIrisIn()" onmouseup="PTZIrisStop()"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Zoom-" onmousedown="PTZZoomout()" onmouseup="PTZZoomStop()"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Focus-" onmousedown="PTZFoucusOut()" onmouseup="PTZFoucusStop()"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Iris-" onmousedown="PTZIrisOut()" onmouseup="PTZIrisStop()"/></td>
+                    </tr>
+                </table>
             </div>
             <div id="tab4">
-                Четвёртый контент
+                <table>    
+                    <tr>
+                        <td align="center" width="124px"><label for="starttime" class="browse">Start time:</label></td>
+                        <td align="center" width="124px"><input id="starttime" name="starttime" type="text" value="2013-12-10 00:00:00" class="browseinput"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><label for="endtime" class="browse">End time:</label></td>
+                        <td align="center" width="124px"><input id="endtime" name="endtime" type="text" value="2013-12-11 23:59:59" class="browseinput"/></td>
+                        <td align="center"><input type="button" class="btn2" value="Search" onclick="clickRecordSearch(0);"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Start play" onclick="clickStartPlayback();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Stop play" onclick="clickStopPlayback();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Reverse play" onclick="clickReversePlayback();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Single frame" onclick="clickFrame();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Pause" onclick="clickPause();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Resume" onclick="clickResume();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Slow forward" onclick="clickPlaySlow();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Fast forward" onclick="clickPlayFast();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="Capture" onclick="clickCapturePic();"/></td>
+                    </tr>
+                    <tr>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Start clip" onclick="clickStartRecord();"/></td>
+                        <td align="center" width="124px"><input type="button" class="btn2" value="Stop clip" onclick="clickStopRecord();"/></td>
+                        <td align="center" height="40px"><input type="button" class="btn2" value="OSD time" onclick="clickGetOSDTime();"/></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td width="248px" align="center">
+                            <input id="transstream" type="checkbox" class="browseinput"/>
+                            <a>Enable TransCode Stream</a>
+                        </td>
+                        <td align="center" width="124px"><input id="osdtime" type="text" class="browseinput"/></td>
+                    </tr>
+                    <tr>
+                                <table id="searchlist" class="searchlist"></table>
+                    </tr>
+                </table>
             </div>
         </div>
         <div id="informationContainer">

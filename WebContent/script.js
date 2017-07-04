@@ -89,7 +89,7 @@ function getWindowSize() {
 }
 
 // open option dialog 0: folder, 1: file 
-	function clickOpenFileDlg(id, iType) {
+function clickOpenFileDlg(id, iType) {
 	var szDirPath = WebVideoCtrl.I_OpenFileDlg(iType);
 	
 	if (szDirPath != -1 && szDirPath != "" && szDirPath != null) {
@@ -97,53 +97,6 @@ function getWindowSize() {
 	}
 }
 
-// get local parameters
-function clickGetLocalCfg() {
-	var xmlDoc = WebVideoCtrl.I_GetLocalCfg();
-
-	$("#netsPreach").val($(xmlDoc).find("BuffNumberType").eq(0).text());
-	$("#wndSize").val($(xmlDoc).find("PlayWndType").eq(0).text());
-	$("#rulesInfo").val($(xmlDoc).find("IVSMode").eq(0).text());
-	$("#captureFileFormat").val($(xmlDoc).find("CaptureFileFormat").eq(0).text());
-	$("#packSize").val($(xmlDoc).find("PackgeSize").eq(0).text());
-	$("#recordPath").val($(xmlDoc).find("RecordPath").eq(0).text());
-	$("#downloadPath").val($(xmlDoc).find("DownloadPath").eq(0).text());
-	$("#previewPicPath").val($(xmlDoc).find("CapturePath").eq(0).text());
-	$("#playbackPicPath").val($(xmlDoc).find("PlaybackPicPath").eq(0).text());
-	$("#playbackFilePath").val($(xmlDoc).find("PlaybackFilePath").eq(0).text());
-    	$("#protocolType").val($(xmlDoc).find("ProtocolType").eq(0).text());
-
-	showOPInfo("local configuration success！");
-}
-
-// set local parameters
-function clickSetLocalCfg() {
-	var arrXml = [],
-		szInfo = "";
-	
-	arrXml.push("<LocalConfigInfo>");
-	arrXml.push("<PackgeSize>" + $("#packSize").val() + "</PackgeSize>");
-	arrXml.push("<PlayWndType>" + $("#wndSize").val() + "</PlayWndType>");
-	arrXml.push("<BuffNumberType>" + $("#netsPreach").val() + "</BuffNumberType>");
-	arrXml.push("<RecordPath>" + $("#recordPath").val() + "</RecordPath>");
-	arrXml.push("<CapturePath>" + $("#previewPicPath").val() + "</CapturePath>");
-	arrXml.push("<PlaybackFilePath>" + $("#playbackFilePath").val() + "</PlaybackFilePath>");
-	arrXml.push("<PlaybackPicPath>" + $("#playbackPicPath").val() + "</PlaybackPicPath>");
-	arrXml.push("<DownloadPath>" + $("#downloadPath").val() + "</DownloadPath>");
-	arrXml.push("<IVSMode>" + $("#rulesInfo").val() + "</IVSMode>");
-	arrXml.push("<CaptureFileFormat>" + $("#captureFileFormat").val() + "</CaptureFileFormat>");
-    	arrXml.push("<ProtocolType>" + $("#protocolType").val() + "</ProtocolType>");
-	arrXml.push("</LocalConfigInfo>");
-
-	var iRet = WebVideoCtrl.I_SetLocalCfg(arrXml.join(""));
-
-	if (0 == iRet) {
-		szInfo = "local configuration success！";
-	} else {
-		szInfo = "local configuration failed！";
-	}
-	showOPInfo(szInfo);
-}
 
 // windows number
 function changeWndNum(iType) {
@@ -201,34 +154,6 @@ function clickLogout() {
 		szInfo = "exit failed！";
 	}
 	showOPInfo(szIP + " " + szInfo);
-}
-
-// get deivce info
-function clickGetDeviceInfo() {
-	var szIP = $("#ip").val();
-
-	if ("" == szIP) {
-		return;
-	}
-
-	WebVideoCtrl.I_GetDeviceInfo(szIP, {
-		success: function (xmlDoc) {
-			var arrStr = [];
-			arrStr.push("device name：" + $(xmlDoc).find("deviceName").eq(0).text() + "\r\n");
-			arrStr.push("device ID：" + $(xmlDoc).find("deviceID").eq(0).text() + "\r\n");
-			arrStr.push("model：" + $(xmlDoc).find("model").eq(0).text() + "\r\n");
-			arrStr.push("serial number：" + $(xmlDoc).find("serialNumber").eq(0).text() + "\r\n");
-			arrStr.push("MAC address：" + $(xmlDoc).find("macAddress").eq(0).text() + "\r\n");
-			arrStr.push("firmware version：" + $(xmlDoc).find("firmwareVersion").eq(0).text() + " " + $(xmlDoc).find("firmwareReleasedDate").eq(0).text() + "\r\n");
-			arrStr.push("encoder version：" + $(xmlDoc).find("encoderVersion").eq(0).text() + " " + $(xmlDoc).find("encoderReleasedDate").eq(0).text() + "\r\n");
-			
-			showOPInfo(szIP + " get deivce info success！");
-			alert(arrStr.join(""));
-		},
-		error: function () {
-			showOPInfo(szIP + " get device info failed！");
-		}
-	});
 }
 
 // get channel info
@@ -635,7 +560,7 @@ function clickDisableEZoom() {
 }
 
 // enable 3D zoom
-	function clickEnable3DZoom() {
+function clickEnable3DZoom() {
 	var oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex),
 		szInfo = "";
 
@@ -961,7 +886,7 @@ function clickReversePlayback() {
 }
 
 // single frame
-	function clickFrame() {
+function clickFrame() {
 	var oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex),
 		szInfo = "";
 
@@ -1009,7 +934,7 @@ function clickResume() {
 }
 
 // slow play
-	function clickPlaySlow() {
+function clickPlaySlow() {
 	var oWndInfo = WebVideoCtrl.I_GetWindowStatus(g_iWndIndex),
 		szInfo = "";
 
@@ -1124,64 +1049,6 @@ function downProcess() {
 	}
 }
 
-// export configuration file
-function clickExportDeviceConfig() {
-	var szIP = $("#ip").val(),
-		szInfo = "";
-
-	if ("" == szIP) {
-		return;
-	}
-
-	var iRet = WebVideoCtrl.I_ExportDeviceConfig(szIP);
-
-	if (0 == iRet) {
-		szInfo = " export configuration file success！";
-	} else {
-		szInfo = " export configuration file failed！";
-	}
-	showOPInfo(szIP + " " + szInfo);
-}
-
-// import configuration file
-function clickImportDeviceConfig() {
-	var szIP = $("#ip").val(),
-		szFileName = $("#configFile").val();
-
-	if ("" == szIP) {
-		return;
-	}
-
-	if ("" == szFileName) {
-		alert("please select configuration file！");
-		return;
-	}
-
-	var iRet = WebVideoCtrl.I_ImportDeviceConfig(szIP, szFileName);
-
-	if (0 == iRet) {
-		WebVideoCtrl.I_Restart(szIP, {
-			success: function (xmlDoc) {
-				$("<div id='restartDiv' class='freeze'>reboot...</div>").appendTo("body");
-				var oSize = getWindowSize();
-				$("#restartDiv").css({
-					width: oSize.width + "px",
-					height: oSize.height + "px",
-					lineHeight: oSize.height + "px",
-					left: 0,
-					top: 0
-				});
-				setTimeout("reconnect('" + szIP + "')", 20000);
-			},
-			error: function () {
-				showOPInfo(szIP + " reboot failed！");
-			}
-		});
-	} else {
-		showOPInfo(szIP + " export failed！");
-	}
-}
-
 // reconnection
 function reconnect(szIP) {
 	WebVideoCtrl.I_Reconnect(szIP, {
@@ -1192,160 +1059,6 @@ function reconnect(szIP) {
 			setTimeout(function () {reconnect(szIP);}, 5000);
 		}
 	});
-}
-
-// start upgrade
-m_tUpgrade = 0;
-function clickStartUpgrade(szIP) {
-	var szIP = $("#ip").val(),
-		szFileName = $("#upgradeFile").val();
-
-	if ("" == szIP) {
-		return;
-	}
-
-	if ("" == szFileName) {
-		alert("please select upgrade file！");
-		return;
-	}
-
-	var iRet = WebVideoCtrl.I_StartUpgrade(szIP, szFileName);
-	if (0 == iRet) {
-		m_tUpgrade = setInterval("getUpgradeStatus('" + szIP + "')", 1000);
-	} else {
-		showOPInfo(szIP + " upgrade failed！");
-	}
-}
-
-// get upgrade status
-function getUpgradeStatus(szIP) {
-	var iStatus = WebVideoCtrl.I_UpgradeStatus();
-	if (iStatus == 0) {
-		var iProcess = WebVideoCtrl.I_UpgradeProgress();
-		if (iProcess < 0) {
-			clearInterval(m_tUpgrade);
-			m_tUpgrade = 0;
-			showOPInfo(szIP + " get process failed！");
-			return;
-		} else if (iProcess < 100) {
-			if (0 == $("#restartDiv").length) {
-				$("<div id='restartDiv' class='freeze'></div>").appendTo("body");
-				var oSize = getWindowSize();
-				$("#restartDiv").css({
-					width: oSize.width + "px",
-					height: oSize.height + "px",
-					lineHeight: oSize.height + "px",
-					left: 0,
-					top: 0
-				});
-			}
-			$("#restartDiv").text(iProcess + "%");
-		} else {
-			WebVideoCtrl.I_StopUpgrade();
-			clearInterval(m_tUpgrade);
-			m_tUpgrade = 0;
-
-			$("#restartDiv").remove();
-
-			WebVideoCtrl.I_Restart(szIP, {
-				success: function (xmlDoc) {
-					$("<div id='restartDiv' class='freeze'>reboot...</div>").appendTo("body");
-					var oSize = getWindowSize();
-					$("#restartDiv").css({
-						width: oSize.width + "px",
-						height: oSize.height + "px",
-						lineHeight: oSize.height + "px",
-						left: 0,
-						top: 0
-					});
-					setTimeout("reconnect('" + szIP + "')", 20000);
-				},
-				error: function () {
-					showOPInfo(szIP + " reboot failed！");
-				}
-			});
-		}
-	} else if (iStatus == 1) {
-		WebVideoCtrl.I_StopUpgrade();
-		showOPInfo(szIP + " upgrade failed！");
-		clearInterval(m_tUpgrade);
-		m_tUpgrade = 0;
-	} else if (iStatus == 2) {
-		mWebVideoCtrl.I_StopUpgrade();
-		showOPInfo(szIP + " language does not match！");
-		clearInterval(m_tUpgrade);
-		m_tUpgrade = 0;
-	} else {
-		mWebVideoCtrl.I_StopUpgrade();
-		showOPInfo(szIP + " get status failed！");
-		clearInterval(m_tUpgrade);
-		m_tUpgrade = 0;
-	}
-}
-
-// check plugin version
-function clickCheckPluginVersion() {
-	var iRet = WebVideoCtrl.I_CheckPluginVersion();
-	if (0 == iRet) {
-		alert("your plugin version is the latest！");
-	} else {
-		alert("detect the latest plugin version！");
-	}
-}
-
-// remote configuration library
-function clickRemoteConfig() {
-	var szIP = $("#ip").val(),
-		iDevicePort = parseInt($("#deviceport").val(), 10) || "",
-		szInfo = "";
-	
-	if ("" == szIP) {
-		return;
-	}
-
-	var iRet = WebVideoCtrl.I_RemoteConfig(szIP, {
-		iDevicePort: iDevicePort,
-		iLan: 0
-	});
-
-	if (-1 == iRet) {
-		szInfo = "call remote configuration library failed！";
-	} else {
-		szInfo = "call remote configuration library success！";
-	}
-	showOPInfo(szIP + " " + szInfo);
-}
-
-function clickRestoreDefault() {
-    var szIP = $("#ip").val(),
-        szMode = "basic";
-    WebVideoCtrl.I_RestoreDefault(szIP, szMode, {
-        success: function (xmlDoc) {
-            $("#restartDiv").remove();
-            showOPInfo(szIP + " restore default success！");
-            //reboot after restore
-            WebVideoCtrl.I_Restart(szIP, {
-                success: function (xmlDoc) {
-                    $("<div id='restartDiv' class='freeze'>reboot...</div>").appendTo("body");
-                    var oSize = getWindowSize();
-                    $("#restartDiv").css({
-                        width: oSize.width + "px",
-                        height: oSize.height + "px",
-                        lineHeight: oSize.height + "px",
-                        left: 0,
-                        top: 0
-                    });
-                    setTimeout("reconnect('" + szIP + "')", 20000);
-                },
-                error: function () {
-                    showOPInfo(szIP + " reboot failed！");
-                }
-            });
-        },
-        error: function () {
-            showOPInfo(szIP + " restore default failed！");
-        }
-    });
 }
 
 function PTZZoomIn() {
